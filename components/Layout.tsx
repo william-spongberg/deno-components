@@ -94,17 +94,21 @@ export function Center({ children }: ChildrenProps) {
 
 interface HeaderProps {
   title?: string;
+  colour?: string;
+  textColour?: string;
 }
 
-export function Header({ title = "" }: HeaderProps) {
+export function Header({ title = "", colour = "bg-gray-900", textColour }: HeaderProps) {
   return (
-    <header class="flex flex-col items-center w-auto bg-gray-900 text-white">
-      <Text.Heading>{title}</Text.Heading>
+    <header class={`flex flex-col items-center w-auto ${colour} text-white`}>
+      <Text.Heading textColour={textColour}>{title}</Text.Heading>
     </header>
   );
 }
 
 interface FooterProps {
+  colour?: string;
+  textColour?: string;
   disableButton?: boolean;
   buttonProps?: ButtonProps;
   authorProps?: AuthorProps;
@@ -118,6 +122,8 @@ interface AuthorProps {
 
 export function Footer(
   {
+    colour = "bg-gray-900",
+    textColour = "text-white",
     disableButton = false,
     buttonProps = {
       href: "/",
@@ -132,7 +138,7 @@ export function Footer(
 ) {
   return (
     <>
-      <footer class="flex flex-col items-center w-auto bg-gray-900 text-white">
+      <footer class={`flex flex-col items-center w-auto ${colour} ${textColour}`}>
         {!disableButton && <Button {...buttonProps }/>}
         <div class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 p-4 md:p-2 pb-16 md:pb-2">
           { isBeta ? (
