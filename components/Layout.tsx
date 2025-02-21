@@ -1,6 +1,6 @@
 import { ComponentChildren } from "preact";
 import * as Text from "../components/Text.tsx";
-import Button from "../components/Button.tsx";
+import Button, { ButtonProps } from "../components/Button.tsx";
 
 const SCREEN_COLOUR = "bg-black";
 const ELEMENT_COLOUR = "bg-gray-800";
@@ -15,7 +15,7 @@ interface PageProps {
   colour?: string;
   children: ComponentChildren;
   disableFooter?: boolean;
-  footerProps?: ButtonProps;
+  footerProps?: FooterProps;
   enableHeader?: boolean;
   headerProps?: HeaderProps;
 }
@@ -104,10 +104,11 @@ export function Header({ title = "" }: HeaderProps) {
   );
 }
 
-interface ButtonProps {
+interface FooterProps {
   disableButton?: boolean;
-  href?: string;
-  buttonText?: string;
+  buttonProps?: ButtonProps;
+  authorProps?: AuthorProps;
+  isBeta?: boolean;
 }
 
 interface AuthorProps {
@@ -118,27 +119,37 @@ interface AuthorProps {
 export function Footer(
   {
     disableButton = false,
-    href = "/",
-    buttonText = "Go back Home",
-  }: ButtonProps,
-  { name = "Author", link = "" }: AuthorProps
+    buttonProps = {
+      href: "/",
+      text: "Home",
+    },
+    authorProps = {
+      name: "Author",
+      link: "/",
+    },
+    isBeta = true,
+  }: FooterProps
 ) {
   return (
     <>
       <footer class="flex flex-col items-center w-auto bg-gray-900 text-white">
-        {!disableButton && <Button href={href} text={buttonText} />}
+        {!disableButton && <Button {...buttonProps }/>}
         <div class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 p-4 md:p-2 pb-16 md:pb-2">
-          <p class="text-yellow-500 mb-2 md:mb-0">This website is in beta.</p>
-          <p class="hidden md:block mx-2">|</p>
+          { isBeta ? (
+            <>
+              <p class="text-yellow-500 mb-2 md:mb-0">This website is in beta.</p>
+              <p class="hidden md:block mx-2">|</p>
+            </>
+          ) : null }
           <p class="mb-2 md:mb-0">
             Made with ❤️ by{" "}
-            <a href={link} class="text-blue-500 hover:underline">
-              {name}
+            <a href={authorProps.link} class="text-blue-500 hover:underline">
+              {authorProps.name}
             </a>
           </p>
           <p class="hidden md:block mx-2">|</p>
           <p>
-            &copy; {name} {new Date().getFullYear()}. All rights reserved.
+            &copy; {authorProps.name} {new Date().getFullYear()}. All rights reserved.
           </p>
         </div>
       </footer>
