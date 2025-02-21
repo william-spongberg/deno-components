@@ -98,9 +98,13 @@ interface HeaderProps {
   textColour?: string;
 }
 
-export function Header({ title = "", colour = "bg-gray-900", textColour }: HeaderProps) {
+export function Header({
+  title = "",
+  colour = "bg-gray-900",
+  textColour,
+}: HeaderProps) {
   return (
-    <header class={`flex flex-col items-center w-auto ${colour} text-white`}>
+    <header class={`flex flex-col items-center w-auto py-2 ${colour} text-white`}>
       <Text.Heading textColour={textColour}>{title}</Text.Heading>
     </header>
   );
@@ -120,33 +124,35 @@ interface AuthorProps {
   link?: string;
 }
 
-export function Footer(
-  {
-    colour = "bg-gray-900",
-    textColour = "text-white",
-    disableButton = false,
-    buttonProps = {
-      href: "/",
-      text: "Home",
-    },
-    authorProps = {
-      name: "Author",
-      link: "/",
-    },
-    isBeta = true,
-  }: FooterProps
-) {
+export function Footer({
+  colour = "bg-gray-900",
+  textColour = "text-white",
+  disableButton = false,
+  buttonProps = {
+    href: "/",
+    text: "Home",
+  },
+  authorProps = {
+    name: "Author",
+    link: "/",
+  },
+  isBeta = true,
+}: FooterProps) {
   return (
     <>
-      <footer class={`flex flex-col items-center w-auto ${colour} ${textColour}`}>
-        {!disableButton && <Button {...buttonProps }/>}
+      <footer
+        class={`flex flex-col items-center w-auto ${colour} ${textColour}`}
+      >
+        {!disableButton && <Button {...buttonProps} />}
         <div class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 p-4 md:p-2 pb-16 md:pb-2">
-          { isBeta ? (
+          {isBeta ? (
             <>
-              <p class="text-yellow-500 mb-2 md:mb-0">This website is in beta.</p>
+              <p class="text-yellow-500 mb-2 md:mb-0">
+                This website is in beta.
+              </p>
               <p class="hidden md:block mx-2">|</p>
             </>
-          ) : null }
+          ) : null}
           <p class="mb-2 md:mb-0">
             Made with ❤️ by{" "}
             <a href={authorProps.link} class="text-blue-500 hover:underline">
@@ -155,7 +161,8 @@ export function Footer(
           </p>
           <p class="hidden md:block mx-2">|</p>
           <p>
-            &copy; {authorProps.name} {new Date().getFullYear()}. All rights reserved.
+            &copy; {authorProps.name} {new Date().getFullYear()}. All rights
+            reserved.
           </p>
         </div>
       </footer>
