@@ -1,14 +1,16 @@
 # fresh-components
 
-A collection of reusable UI components built with [Preact](https://preactjs.com/) and configured to work well with Deno Fresh. These components include customisable layout structures, typographic elements, and buttons that can be tailored via props. All components are designed to work with any form factor and can be easily integrated into your project.
+> [!IMPORTANT]
+> This package is not currently published to JSR due to limitations in .tsx support. It will be published as soon as possible.
 
-> **Note:** All components are styled using Tailwind CSS classes. Any colour or size customisations should be done using Tailwind classes or by modifying the component styles directly.
+A collection of reusable UI components built with [Preact](https://preactjs.com/) and configured to work well with Deno Fresh. These components include customisable layout structures, typographic elements, and buttons that can be tailored via props. All components are designed to work with any form factor and can be easily integrated into your project.
 
 ---
 
 ## Usage
 
-All components are re-exported from [mod.ts](mod.ts) for easy imports:
+> [!NOTE]
+> All components are styled using Tailwind CSS classes. Any colour or size customisations should be done using Tailwind classes or by modifying the component styles directly.
 
 ```tsx
 import { Layout, Text, Button } from "jsr:@spongberg/fresh-components";
