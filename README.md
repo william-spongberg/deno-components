@@ -13,7 +13,7 @@ All components are re-exported from [mod.ts](mod.ts) for easy imports:
 ```tsx
 import { Layout, Text, Button } from "jsr:@spongberg/fresh-components";
 
-export default function App() {
+export default function Home() {
   return (
     <Layout.Page
       colour="bg-gray-900"
